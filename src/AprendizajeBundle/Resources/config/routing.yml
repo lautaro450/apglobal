@@ -1,0 +1,38 @@
+aprendizaje_homepage:
+    path:     /home
+    defaults: { _controller: AprendizajeBundle:Default:index }
+aprendizaje_registro:
+    path:     /registro
+    defaults: { _controller: AprendizajeBundle:Registro:register }
+aprendizaje_verificacion_registro:
+    path:     /registro/verificacion
+    defaults: { _controller: AprendizajeBundle:Registro:verificacion }
+aprendizaje_login:
+    path:     /login
+    defaults: { _controller: AprendizajeBundle:Security:login }
+
+aprendizaje_subir_video:
+    path:     /subir
+    defaults: { _controller: AprendizajeBundle:Video:subir }
+aprendizaje_admin:
+    path:     /admin
+    defaults: { _controller: AprendizajeBundle:Security:adminWeb }
+aprendizaje_admin_categoria_agregar:
+    path:     /admin/categoria/agregar
+    defaults: { _controller: AprendizajeBundle:Admin:agregarCategoria }
+aprendizaje_admin_categoria_agregar_sub:
+    path:     /admin/categoria/agregar/subcategoria
+    defaults: { _controller: AprendizajeBundle:Admin:agregarSubcategoria }
+login_check:
+    path:     /login_check
+logout:
+    path: /logout
+_create:
+    path: /create
+    defaults: { _controller: AprendizajeBundle:Registro:register }
+_registroCompletado:
+    path: /registro/completado
+    defaults: { _controller: AprendizajeBundle:Registro:registroCompletado }
+_testing:
+    path: /admin/categoria/
+    defaults: { _controller: AprendizajeBundle:Admin:categoria }

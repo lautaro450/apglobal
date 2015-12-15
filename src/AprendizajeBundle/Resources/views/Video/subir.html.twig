@@ -1,0 +1,60 @@
+{% extends "AprendizajeBundle:Default:index.html.twig" %}
+
+{# 
+  Se incluye un archivo javascript que procesa la request en AJAX
+  para no hacer ilegible el codigo.
+ #}
+
+{% block content %}
+<div class="col-lg-12">
+              <div class="nav-tabs-custom">
+                  <div class="tab-pane active" id="tab_1">
+
+
+<div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Subir video</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="Titulo">Titulo</label>
+                        {{ form_widget(form.titulo, {'attr': {'class': 'form-control', 'placeholder':'Titulo'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="Descripcion">Descripcion</label>
+                        {{ form_widget(form.descripcion, {'attr': {'class': 'form-control', 'placeholder':'Descripcion'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="Categoria">Categoria</label>
+                        {{ form_widget(form.categoria, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    <div class="form-group">
+                      <label for="SubCategoria">Sub-Categoria</label>
+                        <select class="form-control" id="SubCategoria">
+                          <option> test </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Link</label>
+                        {{ form_widget(form.link, {'attr': {'class': 'form-control', 'placeholder':'Direccion web donde se encuentra alojado el video.'}}) }}
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+                </form>
+              </div>
+
+
+                  </div><!-- /.tab-pane -->
+              </div><!-- nav-tabs-custom -->
+            </div>
+{% endblock content %}
+
+{% block contentScript %}
+<script src="{{ asset('bundles/aprendizaje/js/AJAX-SubCategoria-Select.js') }}">
+</script>
+{% endblock contentScript %}

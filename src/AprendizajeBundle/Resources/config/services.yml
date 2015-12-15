@@ -1,0 +1,5 @@
+services:
+
+#    aprendizaje.example:
+#        class: AprendizajeBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,41 @@
+{% extends "AprendizajeBundle:Default:index.html.twig" %}
+
+{% block content %}
+<div class="col-lg-12">
+              <div class="nav-tabs-custom">
+                  <div class="tab-pane active" id="tab_1">
+
+
+<div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Agregar categoria</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+{% for flashMessage in app.session.flashbag.get('message') %}
+
+<div class="alert alert-success">
+    {{ flashMessage }}
+</div>
+
+{% endfor %}
+                <form role="form" method='post' action="{{path('aprendizaje_admin_categoria_agregar')}}">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Nombre Categoria</label>
+                        {{ form_widget(form.nombre, {'attr': {'class': 'form-control', 'placeholder':'Categoria'}}) }}
+                    </div>
+                  </div><!-- /.box-body -->
+
+                  <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+                  {{ form_row(form._token) }}
+                </form>
+              </div>
+
+
+                  </div><!-- /.tab-pane -->
+              </div><!-- nav-tabs-custom -->
+            </div>
+{% endblock content %}
+

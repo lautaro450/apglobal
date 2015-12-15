@@ -1,0 +1,40 @@
+<html lang="es">
+<head>
+	<title>Test</title>
+	<meta charset="utf-8" />
+	<style>
+		body
+		{
+			background:black;
+		}
+		#container
+		{
+			width:990px;
+			margin:0 auto;
+			border:1px #CCC;
+		}
+		.title-entry
+		{
+			font-family: sans-serif;
+			color:white;
+			background:#e18728;
+			text-transform: uppercase;
+
+		}
+		.post-entry
+		{
+			color:white;
+			font-family: verdana;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div class="title-entry">
+			All is working correctly!
+			<p>{{ user.username }}</p>
+			<p>{{ user.password }}</p>
+		</div>
+	</div>
+</body>
+</html>
