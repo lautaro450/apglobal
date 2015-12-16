@@ -71,3 +71,15 @@ services:
     class: AprendizajeBundle\Helper\AdminHelper
     arguments:
       entityManager: "@doctrine.orm.entity_manager"
+  aprendizaje.formType.Video:
+    class: AprendizajeBundle\Form\VideoType
+    arguments:
+      entityManager: "@service_container"
+  aprendizaje.login.listener:
+    class: AprendizajeBundle\EventListener\MyListener
+    arguments: ['@twig' , '@service_container']
+    tags:
+        -
+            name: kernel.event_listener
+            event: kernel.request
+            method: onKernelRequest

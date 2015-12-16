@@ -7,6 +7,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Doctrine\ORM\EntityManager;
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+
 
 
 class VideoType extends AbstractType
@@ -15,19 +18,27 @@ class VideoType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array $options
      */
+private $container;
+
+    public function __construct(Container $container) {
+        $this->container = $container;
+    }
+
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $categoria = $this->verCategoriaAction();
+        $helper = $this->container->get('aprendizaje.helper');
+        $categoria = $helper->verCategoria(0);
         $builder
             ->add('titulo')
             ->add('descripcion', TextareaType::class)
             ->add('link')
-            ->add('tipo', ChoiceType::class, array(
+            ->add('categoria', ChoiceType::class, array(
                 'choices' => $categoria,
                 'required'    => true,
                 'placeholder' => 'Categoria',
                 'empty_data'  => null
-            ));
+                ));
     }
     
     /**

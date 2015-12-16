@@ -54,7 +54,49 @@ class AdminHelper extends Controller
         ->setParameter('parent', $parentID)
         ->getQuery();
         $buffer_categoria = $query->getResult();
-        
-        return new Response($buffer_categoria);
+        return $buffer_categoria;
+    }
+
+    public function verificarTituloVideo($titulo)
+    {
+        $repository = $this->entityManager->getRepository('AprendizajeBundle:Video');
+        $query = $repository->findOneByTitulo($titulo);
+        if(is_null($query))
+        {
+            return true; // el nombre ha sido verificado con exito
+        }
+        else
+        {
+            return false; // el nombre ya existe almacenado en la base de datos.
+        }
+    }
+
+    public function verVideo($videoID = NULL)
+    {
+        if(is_null($videoID))
+        {
+            $repository = $this->entityManager->getRepository('AprendizajeBundle:Video');
+            $query = $repository->createQueryBuilder('p')
+            ->getQuery();
+            $buffer_videos = $query->getResult();
+            return $buffer_videos;
+        }
+        else
+        {
+
+        }
+    }
+
+    public function contarVideos($usuarioID = NULL)
+    {
+        $repository = $this->entityManager->getRepository('AprendizajeBundle:Video');
+        $query = $repository->createQueryBuilder('p')
+        ->select('count(p)')
+        ->where('p.usuarioID = :usuarioID')
+        ->setParameter('usuarioID', $usuarioID);
+        $count = $query->getQuery()->getSingleScalarResult();
+        return $count;
+
+
     }
 }

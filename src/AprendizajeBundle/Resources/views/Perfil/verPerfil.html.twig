@@ -1,0 +1,50 @@
+{% extends "AprendizajeBundle:Default:index.html.twig" %}
+
+{# 
+  Se incluye un archivo javascript que procesa la request en AJAX
+  para no hacer ilegible el codigo.
+ #}
+{% block headerContent %}
+{% endblock headerContent %}
+{% block content %}
+<div class="col-lg-12">
+<div class="box box-widget widget-user">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-aqua-active">
+                  <h3 class="widget-user-username">{{ app.user.username }}</h3>
+                  <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+                </div>
+                <div class="widget-user-image">
+                  <img class="img-circle" src="{{ asset('bundles/aprendizaje/dist/img/avatar5.png') }}">
+                </div>
+                <div class="box-footer">
+                  <div class="row">
+                    <div class="col-sm-4 border-right">
+                      <div class="description-block">
+                        <h5 class="description-header">{{ cantidadVideos }}</h5>
+                        <span class="description-text">VIDEOS</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-4 border-right">
+                      <div class="description-block">
+                        <h5 class="description-header">13,000</h5>
+                        <span class="description-text">FOLLOWERS</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                    <div class="col-sm-4">
+                      <div class="description-block">
+                        <h5 class="description-header">35</h5>
+                        <span class="description-text">PRODUCTS</span>
+                      </div><!-- /.description-block -->
+                    </div><!-- /.col -->
+                  </div><!-- /.row -->
+                </div>
+              </div>
+            </div>
+
+{% endblock content %}
+
+{% block contentScript %}
+<script src="{{ asset('bundles/aprendizaje/js/AJAX-SubCategoria-Select.js') }}">
+</script>
+{% endblock contentScript %}

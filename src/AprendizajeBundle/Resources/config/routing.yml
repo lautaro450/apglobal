@@ -1,6 +1,6 @@
 aprendizaje_homepage:
     path:     /home
-    defaults: { _controller: AprendizajeBundle:Default:index }
+    defaults: { _controller: AprendizajeBundle:Home:index }
 aprendizaje_registro:
     path:     /registro
     defaults: { _controller: AprendizajeBundle:Registro:register }
@@ -14,6 +14,9 @@ aprendizaje_login:
 aprendizaje_subir_video:
     path:     /subir
     defaults: { _controller: AprendizajeBundle:Video:subir }
+aprendizaje_ver_video:
+    path:     /ver/video/{videoID}
+    defaults: { _controller: AprendizajeBundle:Video:ver }
 aprendizaje_admin:
     path:     /admin
     defaults: { _controller: AprendizajeBundle:Security:adminWeb }
@@ -23,6 +26,12 @@ aprendizaje_admin_categoria_agregar:
 aprendizaje_admin_categoria_agregar_sub:
     path:     /admin/categoria/agregar/subcategoria
     defaults: { _controller: AprendizajeBundle:Admin:agregarSubcategoria }
+aprendizaje_ver_perfil:
+    path:     /perfil/ver/{userID}
+    defaults: { _controller: AprendizajeBundle:Perfil:ver }
+aprendizaje_leer_mensajes:
+    path:     /mensajes/leer/{mensajeID}
+    defaults: { _controller: AprendizajeBundle:Mensaje:leer }
 login_check:
     path:     /login_check
 logout:
@@ -34,5 +43,5 @@ _registroCompletado:
     path: /registro/completado
     defaults: { _controller: AprendizajeBundle:Registro:registroCompletado }
 _testing:
-    path: /admin/categoria/
-    defaults: { _controller: AprendizajeBundle:Admin:categoria }
+    path: /test
+    defaults: { _controller: AprendizajeBundle:Video:test }

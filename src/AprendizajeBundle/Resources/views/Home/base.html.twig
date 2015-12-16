@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  {% include "AprendizajeBundle:General:head.html.twig" %}
+  </head>
+  <body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+      <header class="main-header">
+        {% include "AprendizajeBundle:General:header.html.twig" %}
+      </header>
+      <!-- Left side column. contains the logo and sidebar -->
+      <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+        {% block sidebar %}
+          {% include "AprendizajeBundle:General:sidebar.html.twig" %}
+        {% endblock sidebar %}
+        </section><!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="min-height: 921px;">
+        {% block headerContent %}
+          {% include "AprendizajeBundle:General:headerContent.html.twig" %}
+        {% endblock headerContent %}
+        <!-- Main content -->
+        <section class="content">
+          <div class="row">
+          {% block content %}
+            {% include "AprendizajeBundle:Home:index.html.twig" %}
+          {% endblock content %}
+          </div>
+        </section>
+      </div>
+      <footer class="main-footer">
+          {% include "AprendizajeBundle:General:footer.html.twig" %}
+      </footer>
+
+
+      <!-- Add the sidebar's background. This div must be placed
+           immediately after the control sidebar -->
+      <div class="control-sidebar-bg"></div>
+    </div><!-- ./wrapper -->
+        {% include "AprendizajeBundle:General:script.html.twig" %}
+        {% block contentScript %}
+        {% endblock contentScript %}
+  </body>
+</html>

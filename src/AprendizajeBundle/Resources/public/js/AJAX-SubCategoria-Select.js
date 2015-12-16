@@ -1,6 +1,6 @@
-$("#form_categoria").change(function(event)
+$("#video_categoria").change(function(event)
   {
-    var value = $("#form_categoria").val();
+    var value = $("#video_categoria").val();
     console.log(value);
     $.ajax({
         type: "POST",
@@ -11,7 +11,7 @@ $("#form_categoria").change(function(event)
       // alert(JSON.stringify(response,null,4) );
       console.log(response);
         template = response;
-        $('#outputTwo').html(template); 
+        $('#subCategoria').html(template); 
     event.preventDefault();
     })
     .fail(function(jqXHR, textStatus, errorThrown){

@@ -16,46 +16,67 @@ class VideoController extends Controller
     {
         return $this->render('AprendizajeBundle:Video:index.html.twig');
     }
+    public function testAction()
+    {
+        $helper = $this->get('aprendizaje.helper');
+        $test = $helper->contarVideos(1);
+        die(print_r($test,true));
+        /*
+        $helper = $this->get('aprendizaje.helper');
+        $subCategorias = $helper->verSubCategoria(1);
+        // die(print_r($subCategorias));
+        $template = $this->renderView('AprendizajeBundle:Video:verSubCategorias.html.twig', array( 'subCategorias' => $subCategorias));
+        return new Response($template);
+        */
 
+    }
     public function subirAction(Request $request)
     {
-
+        //Llamamos al  helper
         $helper = $this->get('aprendizaje.helper');
+
+        //Recibimos la ajax request en caso de que se envie
         $postRequest = $request->request->get('idCategoria');
         if($postRequest != NULL)
         {
-            return $helper->verSubCategoria($postRequest);
+            $subCategorias = $helper->verSubCategoria($postRequest);
+            $template = $this->renderView('AprendizajeBundle:Video:verSubCategorias.html.twig', array( 'subCategorias' => $subCategorias));
+            return new Response($template);
         }
 
-        //Categoria = 0 => Categoria padre
-        //Categoria != 0 => Categoria Hija
-        $categoria = $helper->verCategoria(0); 
 	    $video = new Video();
+        $videoType = $this->get('aprendizaje.formType.Video');
+        $form = $this->createForm($videoType, $video, ['action' => $this->generateUrl('aprendizaje_subir_video'), 'method' => 'POST']);
 
-        $form = $this->createFormBuilder($video)
-            ->add('titulo')
-            ->add('descripcion', TextareaType::class)
-            ->add('link')
-            ->add('categoria', ChoiceType::class, array(
-                'choices' => $categoria,
-                'required'    => true,
-                'placeholder' => 'Categoria',
-                'empty_data'  => null))
-            ->getForm();
 	    $form->handleRequest($request);
-
         if ($form->isValid()) 
         {
-                $registration->setPassword($hashPassword);
+            $titulo = $form->get('titulo')->getData();
+            if($helper->verificarTituloVideo($titulo) === TRUE)
+            {
+                $subCategoria = $request->request->get('subCategoria');
                 $em = $this->getDoctrine()->getManager();
+                $video->setSubCategoria($subCategoria);
+                $video->setFecha(new \DateTime("now"));
                 $em->persist($video);
                 $em->flush();
 
                 $session = $this->getRequest()->getSession();
-                $session->getFlashBag()->add('message', 'Registrado! Ya podes acceder a todo nuestro contenido');
+                $session->getFlashBag()->add('message', 'Video agregado! Muchas gracias por aportar contenido a la web!.');
 
-                return $this->redirect($this->generateUrl('aprendizaje_login'));
+                return $this->redirect($this->generateUrl('aprendizaje_subir_video'));
+            }
+            else
+            {
+                return new response("hola");
+            }
+
         }
         return $this->render('AprendizajeBundle:Video:subir.html.twig', array('form' => $form->createView()));
+    }
+
+    public function verAction($videoID)
+    {
+        return $this->render('AprendizajeBundle:Video:verVideo.html.twig', array('videoID' => $videoID));
     }
 }

@@ -54,8 +54,28 @@ class Video
      * @ORM\Column(name="link", type="string", length=100)
      */
     private $link;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime")
+     */
+    private $fecha;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="usuarioID", type="integer")
+     */
+    private $usuarioID;
 
-
+    /**
+     * Get usuarioID
+     *
+     * @return int
+     */
+    public function getUsuarioID()
+    {
+        return $this->usuarioID;
+    }
     /**
      * Get id
      *
@@ -76,6 +96,19 @@ class Video
     public function setTitulo($titulo)
     {
         $this->titulo = $titulo;
+
+        return $this;
+    }
+    /**
+     * Set usuarioID
+     *
+     * @param int $usuarioID
+     *
+     * @return Video
+     */
+    public function setUsuarioID($usuarioID)
+    {
+        $this->usuarioID = $usuarioID;
 
         return $this;
     }
@@ -184,5 +217,30 @@ class Video
     {
         return $this->link;
     }
+
+    /**
+     * Set fecha
+     *
+     * @param \DateTime $fecha
+     *
+     * @return Video
+     */
+    public function setFecha($fecha)
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return \DateTime
+     */
+    public function geFecha()
+    {
+        return $this->fecha;
+    }
+
 }
 
